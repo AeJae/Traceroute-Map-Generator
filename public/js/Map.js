@@ -5,8 +5,8 @@ const tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap</a>'
 });
 // Default map location and zoom
-const defaultLoc = new L.LatLng(52.62395, 1.29);
-const defaultZoom = 12;
+const defaultLoc = new L.LatLng(25, 0); // 52.62395, 1.29
+const defaultZoom = 3; // 12
 // Icon Source: https://github.com/pointhi/leaflet-color-markers
 const blueIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',

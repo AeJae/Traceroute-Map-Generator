@@ -7,8 +7,8 @@ const tile: L.TileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y
 });
 
 // Default map location and zoom
-const defaultLoc: L.LatLng = new L.LatLng(52.62395, 1.29);
-const defaultZoom: number = 12;
+const defaultLoc: L.LatLng = new L.LatLng(25, 0); // 52.62395, 1.29
+const defaultZoom: number = 3; // 12
 
 // Icon Source: https://github.com/pointhi/leaflet-color-markers
 const blueIcon: L.Icon = new L.Icon({
