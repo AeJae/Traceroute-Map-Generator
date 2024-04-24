@@ -2,7 +2,7 @@
 import * as L from "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet-src.esm.js";
 // UEA Map Tile
 const tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Arun Fletcher | &copy <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap</a>'
+    attribution: '&copy <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap</a>'
 });
 // Default map location and zoom
 const defaultLoc = new L.LatLng(52.62395, 1.29);
