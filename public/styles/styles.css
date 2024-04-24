@@ -1,0 +1,79 @@
+* {
+  font-family: "Urbanist", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #001520;
+  color: white;
+}
+
+h1 {
+  margin: 20px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+#map {
+  height: 90vh;
+  margin: 20px;
+}
+
+#titleInputBox {
+  position: fixed;
+  top: calc(50vh - 50px);
+  left: calc(50% - 200px);
+  z-index: 1000;
+  border: 3px solid #047adc;
+  border-radius: 20px;
+  background-color: #05204a;
+  width: 400px;
+  height: 0;
+  visibility: hidden;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#titleInputBox form button {
+  margin: 2% auto;
+  border-style: none;
+  padding: 2px;
+  border-radius: 2px;
+  background-color: rgb(43, 80, 172);
+  color: white;
+  cursor: pointer;
+  align-self: center;
+}
+#titleInputBox form button:hover {
+  background-color: #4969ba;
+  border-color: rgb(73, 105, 186);
+  filter: drop-shadow(0px 5px 5px rgba(73, 105, 186, 0.4));
+  transform: translateY(-2px);
+  transition: all 0.3s ease 0s;
+}
+
+::-webkit-scrollbar {
+  width: auto;
+}
+
+::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #828282;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #047adc;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+/*# sourceMappingURL=styles.css.map */

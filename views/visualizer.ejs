@@ -1,0 +1,23 @@
+<h1 id="changeableTitle">Traceroute Visualizer</h1>
+<div id="map"></div>
+<div id="titleInputBox">
+    <form onsubmit="test(this)" action="javascript:void(0)" id="form">
+        <label for="newTitle">Set Title</label>
+        <input type="text" name="newTitle" id="newTitle">
+        <button type="submit" name="confirm" id="confirm">Confirm</button>
+    </form>
+</div>
+
+<script defer>
+    const title = document.getElementById("changeableTitle");
+
+    function test(form) {
+        if (form.newTitle.value !== "") {
+            title.textContent = form.newTitle.value;
+        } else {
+            title.textContent = "Traceroute Visualizer";
+        }
+        form.newTitle.value = "";
+        document.getElementById("newTitle").blur();
+    }
+</script>
