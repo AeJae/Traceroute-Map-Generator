@@ -5,7 +5,7 @@ console.log("AWAIT: Controller");
 
 
 // CONSTANTS AND VARIABLES
-const net: NetworkManager = new NetworkManager(true);
+const net: NetworkManager = new NetworkManager(false);
 const map: Map = new Map("map");
 const recentrer: HTMLElement | null = document.getElementById("recentrer");
 const title: HTMLElement | null = document.getElementById("changeableTitle");
