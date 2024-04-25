@@ -2,19 +2,13 @@ import Map from "./Map.js";
 console.log("Controller loaded.");
 
 const map: Map = new Map("map");
+const recentrer: HTMLElement | null = document.getElementById("recentrer");
 const title: HTMLElement | null = document.getElementById("changeableTitle");
 const titleInputBox: HTMLElement | null = document.getElementById("titleInputBox");
 const titleInputForm: HTMLElement | null = document.getElementById("form");
 let titleInputShown: boolean = false;
 
-function setTitle(newTitle: string): void {
-    if (title) {
-        title.innerText = newTitle;
-    } else {
-        throw new Error("Could not find title element.");
-    }
-}
-
+// Hides the set title area.
 function hideTitleInput(): void {
     if (titleInputBox) {
         // Return to Sass styling.
@@ -24,6 +18,7 @@ function hideTitleInput(): void {
     }
 }
 
+// Shows the set title area.
 function showTitleInput(): void {
     if (titleInputBox) {
         titleInputShown = true;
@@ -32,7 +27,8 @@ function showTitleInput(): void {
     }
 }
 
-function titleClick(): void {
+// Decides whether to show or hide the set title area.
+function titleClicked(): void {
     if (titleInputBox) {
         if (titleInputShown) {
             hideTitleInput();
@@ -42,10 +38,12 @@ function titleClick(): void {
     }
 }
 
-if (title) {
-    title.addEventListener("click", titleClick);
+// Main
+if (title && titleInputForm) {
+    title.addEventListener("click", titleClicked);
+    titleInputForm.addEventListener("submit", hideTitleInput);
+} else {
+    throw new Error("Could not add title related event listeners.");
 }
 
-if (titleInputForm) {
-    titleInputForm.addEventListener("submit", hideTitleInput)
-}
+if (recentrer) recentrer.addEventListener("click", (): void => {map.recentre(3)});
