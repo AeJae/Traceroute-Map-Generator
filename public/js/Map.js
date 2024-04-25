@@ -5,16 +5,16 @@ const tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap</a> | <a id="recentrer" href="javascript:void(0)">Recentre</a>'
 });
 // Default map location and zoom
-const defaultLoc = new L.LatLng(25, 0); // 52.62395, 1.29
-const defaultZoom = 3; // 12
+const defaultLoc = new L.LatLng(25, 0);
+const defaultZoom = 3;
 // Icon Source: https://github.com/pointhi/leaflet-color-markers
 const blueIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconSize: [18, 28], // 25, 41
+    iconAnchor: [10, 28], // 12, 41
+    popupAnchor: [-0.9, -25], // 1, -34
+    shadowSize: [28, 28] // 41, 41
 });
 export default class Map {
     mapObjects = L.layerGroup();

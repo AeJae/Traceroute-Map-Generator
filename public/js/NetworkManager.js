@@ -21,7 +21,6 @@ export default class NetworkManager {
     }
     // Returns IP addresses fetched from the server
     async fetchData() {
-        console.log("Fetching...");
         const response = await fetch("/get-addresses", { method: "POST" });
         return await response.json();
     }
@@ -32,7 +31,7 @@ export default class NetworkManager {
             console.log("Failed to reach server.");
             return [];
         });
-        console.log("Complete.");
+        console.log("Fetched IPs:");
         return addresses.list;
     }
     // Returns the latitude and longitude of a passed IP address as an array.
@@ -43,29 +42,26 @@ export default class NetworkManager {
             // Whether to use Ipregistry or ipapi
             // Ipregistry
             if (this.useAccount) {
-                console.log("Fetching with Ipregistry...");
                 const rawData = await fetch(`https://api.ipregistry.co/${ip}?key=${this.key}`);
-                const data = await rawData.json();
-                if (data.location.latitude && data.location.longitude) {
-                    console.log("Complete.");
-                    return [data.location.latitude, data.location.longitude];
-                }
-                else {
-                    console.error("No location data found.");
+                if (!rawData.ok) {
+                    const error = await rawData.json();
+                    console.error(`No location for ${ip}. Reason: ${error["code"]}.`);
                     return [];
                 }
+                const data = await rawData.json();
+                console.log(`Fetched location of ${ip} with Ipregistry.`);
+                return [data.location.latitude, data.location.longitude];
                 // ipapi
             }
             else {
-                console.log("Fetching with Ipapi...");
                 const rawData = await fetch(`https://ipapi.co/${ip}/json/`);
                 const data = await rawData.json();
                 if (!data.error) {
-                    console.log("Complete.");
+                    console.log(`Fetched location of ${ip} with ipapi.`);
                     return [data.latitude, data.longitude];
                 }
                 else {
-                    console.error(`No location for this IP address. Reason: ${data.reason}`);
+                    console.error(`No location for ${ip}. Reason: ${data.reason}.`);
                     return [];
                 }
             }

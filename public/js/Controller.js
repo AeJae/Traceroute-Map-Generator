@@ -47,7 +47,6 @@ async function refreshMap() {
     const addresses = await net.getAddresses();
     console.log(addresses);
     for (const ip of addresses) {
-        console.log(`Requested location of "${ip}".`);
         const coords = await net.getIPLocation(ip);
         map.addMarker(coords, ip);
     }

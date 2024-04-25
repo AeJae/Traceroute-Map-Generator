@@ -7,17 +7,17 @@ const tile: L.TileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y
 });
 
 // Default map location and zoom
-const defaultLoc: L.LatLng = new L.LatLng(25, 0); // 52.62395, 1.29
-const defaultZoom: number = 3; // 12
+const defaultLoc: L.LatLng = new L.LatLng(25, 0);
+const defaultZoom: number = 3;
 
 // Icon Source: https://github.com/pointhi/leaflet-color-markers
 const blueIcon: L.Icon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconSize: [18, 28], // 25, 41
+    iconAnchor: [10, 28], // 12, 41
+    popupAnchor: [-0.9, -25], // 1, -34
+    shadowSize: [28, 28] // 41, 41
 });
 
 export default class Map {
