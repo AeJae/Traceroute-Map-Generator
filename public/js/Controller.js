@@ -53,7 +53,6 @@ async function refreshMap() {
         map.addMarker(coords, ip);
     }
     map.drawLine();
-    map.openPopups();
 }
 // SETUP
 // EventListeners
