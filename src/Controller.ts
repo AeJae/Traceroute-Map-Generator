@@ -1,8 +1,11 @@
+// INIT
 import NetworkManager from "./NetworkManager.js";
 import Map from "./Map.js";
-console.log("READY: Controller");
+console.log("AWAIT: Controller");
 
-const net: NetworkManager = new NetworkManager();
+
+// CONSTANTS AND VARIABLES
+const net: NetworkManager = new NetworkManager(false);
 const map: Map = new Map("map");
 const recentrer: HTMLElement | null = document.getElementById("recentrer");
 const title: HTMLElement | null = document.getElementById("changeableTitle");
@@ -11,6 +14,8 @@ const titleInputForm: HTMLElement | null = document.getElementById("form");
 const refreshButton: HTMLElement | null = document.getElementById("refresh");
 let titleInputShown: boolean = false;
 
+
+// FUNCTIONS
 // Hides the set title area.
 function hideTitleInput(): void {
     if (titleInputBox) {
@@ -43,11 +48,21 @@ function titleClicked(): void {
 
 // Loads the IP address JSON file and adds their locations to the map.
 async function refreshMap(): Promise<void> {
-    const data: any[] = await net.getAddresses();
-    console.log(data);
+    map.wipe();
+    const addresses: any[] = await net.getAddresses();
+    console.log(addresses);
+    for (const ip of addresses) {
+        console.log(`Requested location of "${ip}".`)
+        const coords: number[] = await net.getIPLocation(ip);
+        console.log(coords);
+        map.addMarker(coords, ip);
+    }
+    map.drawLine();
 }
 
-// Setup
+
+// SETUP
+// EventListeners
 if (title && titleInputForm && recentrer && refreshButton) {
     title.addEventListener("click", titleClicked);
     titleInputForm.addEventListener("submit", hideTitleInput);
@@ -57,5 +72,6 @@ if (title && titleInputForm && recentrer && refreshButton) {
     throw new Error("Could not add event listeners.");
 }
 
-// Main
-refreshMap();
+
+// MAIN
+console.log("READY: Controller");

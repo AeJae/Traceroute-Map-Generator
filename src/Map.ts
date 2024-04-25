@@ -21,14 +21,16 @@ const blueIcon: L.Icon = new L.Icon({
 });
 
 export default class Map {
+    private mapObjects: L.LayerGroup = L.layerGroup();
+    private points: L.LatLng[] = [];
+    private markerNum: number = 0;
     private readonly map: L.Map;
-    private markers: L.LayerGroup = L.layerGroup();
 
     constructor(targetElement: string) {
         try {
             this.map = L.map(targetElement).setView(defaultLoc, defaultZoom);
             tile.addTo(this.map);
-            this.markers.addTo(this.map);
+            this.mapObjects.addTo(this.map);
             console.log("READY: Map");
         } catch (e) {
             console.error(`FAILED: Could not add map to element '${targetElement}'.`);
@@ -37,18 +39,23 @@ export default class Map {
     }
 
     // Adds the passed marker to the map.
-    private addMarker(marker: L.Marker): void {
-        marker.addTo(this.markers);
+    public addMarker(latLongArr: number[], ip: string): void {
+        const latLng: L.LatLng = new L.LatLng(latLongArr[0], latLongArr[1]);
+        L.marker(latLng, {icon: blueIcon}).bindPopup(`<b>${ip}</b></br>Hop ${this.markerNum}`).addTo(this.mapObjects);
+        this.markerNum++;
+        this.points.push(latLng);
     }
 
-    // Removes the passed marker from the map.
-    private removeMarker(marker: L.Marker): void {
-        marker.removeFrom(this.map);
+    // Draws a line between the markers, in order of addition.
+    public drawLine(): void {
+        L.polyline(this.points, {color: '#047adc'}).addTo(this.mapObjects);
     }
 
     // Removes all markers from the map.
-    private wipe(): void {
-        this.markers.clearLayers();
+    public wipe(): void {
+        this.mapObjects.clearLayers();
+        this.points = [];
+        this.markerNum = 0;
     }
 
     // Recentres and resets the zoom of the map
