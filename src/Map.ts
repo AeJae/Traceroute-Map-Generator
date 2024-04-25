@@ -49,7 +49,8 @@ export default class Map {
 
     // Draws a line between the markers, in order of addition.
     public drawLine(): void {
-        L.polyline(this.points, {color: '#047adc'}).addTo(this.mapObjects);
+        const line: L.Polyline = L.polyline(this.points, {color: '#047adc'}).addTo(this.mapObjects);
+        this.map.fitBounds(line.getBounds());
     }
 
     // Opens all marker popups.

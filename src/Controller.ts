@@ -59,6 +59,7 @@ async function refreshMap(): Promise<void> {
         map.addMarker(coords, ip);
     }
     map.drawLine();
+    map.openPopups();
 }
 
 
