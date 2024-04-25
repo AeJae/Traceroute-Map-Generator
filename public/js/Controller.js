@@ -3,7 +3,7 @@ import NetworkManager from "./NetworkManager.js";
 import Map from "./Map.js";
 console.log("AWAIT: Controller");
 // CONSTANTS AND VARIABLES
-const net = new NetworkManager(true);
+const net = new NetworkManager(false);
 const map = new Map("map");
 const recentrer = document.getElementById("recentrer");
 const title = document.getElementById("changeableTitle");
