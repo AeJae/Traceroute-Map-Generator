@@ -29,7 +29,14 @@ export default class NetworkManager {
             console.log(`Fetching...`);
             const rawData = await fetch(`https://ipapi.co/${ip}/json/`);
             const data = await rawData.json();
-            return [data.latitude, data.longitude];
+            if (!data.error) {
+                console.log("Complete.");
+                return [data.latitude, data.longitude];
+            }
+            else {
+                console.error(`No location for this IP address. Reason: ${data.reason}`);
+                return [];
+            }
         }
         else {
             console.error("LIVE DATA FETCHING DISABLED.");

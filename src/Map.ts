@@ -40,11 +40,16 @@ export default class Map {
 
     // Adds the passed marker to the map.
     public addMarker(latLongArr: number[], ip: string): void {
-        const latLng: L.LatLng = new L.LatLng(latLongArr[0], latLongArr[1]);
-        L.marker(latLng, {icon: blueIcon}).bindPopup(`<b>${ip}</b></br>Hop ${this.markerNum}`,
-            {autoClose: false}).addTo(this.mapObjects);
-        this.markerNum++;
-        this.points.push(latLng);
+        if (latLongArr[0] && latLongArr[1]) {
+            const latLng: L.LatLng = new L.LatLng(latLongArr[0], latLongArr[1]);
+            L.marker(latLng, {icon: blueIcon}).bindPopup(`<b>${ip}</b></br>Hop ${this.markerNum}`,
+                {autoClose: false}).addTo(this.mapObjects);
+            this.markerNum++;
+            this.points.push(latLng);
+        } else {
+            console.error(`No marker to add for hop ${this.markerNum}.`);
+            this.markerNum++;
+        }
     }
 
     // Draws a line between the markers, in order of addition.

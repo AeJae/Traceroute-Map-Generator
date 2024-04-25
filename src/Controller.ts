@@ -5,7 +5,7 @@ console.log("AWAIT: Controller");
 
 
 // CONSTANTS AND VARIABLES
-const net: NetworkManager = new NetworkManager(false);
+const net: NetworkManager = new NetworkManager(true);
 const map: Map = new Map("map");
 const recentrer: HTMLElement | null = document.getElementById("recentrer");
 const title: HTMLElement | null = document.getElementById("changeableTitle");
@@ -55,7 +55,6 @@ async function refreshMap(): Promise<void> {
     for (const ip of addresses) {
         console.log(`Requested location of "${ip}".`)
         const coords: number[] = await net.getIPLocation(ip);
-        console.log(coords);
         map.addMarker(coords, ip);
     }
     map.drawLine();
