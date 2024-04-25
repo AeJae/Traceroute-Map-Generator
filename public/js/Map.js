@@ -24,10 +24,10 @@ export default class Map {
             this.map = L.map(targetElement).setView(defaultLoc, defaultZoom);
             tile.addTo(this.map);
             this.markers.addTo(this.map);
-            console.log("Map added.");
+            console.log("READY: Map");
         }
         catch (e) {
-            console.error(`Could not add map to element '${targetElement}'.`);
+            console.error(`FAILED: Could not add map to element '${targetElement}'.`);
             throw e;
         }
     }
