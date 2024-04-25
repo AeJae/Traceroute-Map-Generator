@@ -12,6 +12,7 @@ const title: HTMLElement | null = document.getElementById("changeableTitle");
 const titleInputBox: HTMLElement | null = document.getElementById("titleInputBox");
 const titleInputForm: HTMLElement | null = document.getElementById("form");
 const refreshButton: HTMLElement | null = document.getElementById("refresh");
+const openPopupButton: HTMLElement | null = document.getElementById("openPopups");
 let titleInputShown: boolean = false;
 
 
@@ -63,11 +64,12 @@ async function refreshMap(): Promise<void> {
 
 // SETUP
 // EventListeners
-if (title && titleInputForm && recentrer && refreshButton) {
+if (title && titleInputForm && recentrer && refreshButton && openPopupButton) {
     title.addEventListener("click", titleClicked);
     titleInputForm.addEventListener("submit", hideTitleInput);
     recentrer.addEventListener("click", (): void => {map.recentre(3)});
     refreshButton.addEventListener("click", refreshMap);
+    openPopupButton.addEventListener("click", (): void => {map.openPopups()});
 } else {
     throw new Error("Could not add event listeners.");
 }

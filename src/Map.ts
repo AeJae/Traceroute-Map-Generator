@@ -41,7 +41,8 @@ export default class Map {
     // Adds the passed marker to the map.
     public addMarker(latLongArr: number[], ip: string): void {
         const latLng: L.LatLng = new L.LatLng(latLongArr[0], latLongArr[1]);
-        L.marker(latLng, {icon: blueIcon}).bindPopup(`<b>${ip}</b></br>Hop ${this.markerNum}`).addTo(this.mapObjects);
+        L.marker(latLng, {icon: blueIcon}).bindPopup(`<b>${ip}</b></br>Hop ${this.markerNum}`,
+            {autoClose: false}).addTo(this.mapObjects);
         this.markerNum++;
         this.points.push(latLng);
     }
@@ -51,11 +52,18 @@ export default class Map {
         L.polyline(this.points, {color: '#047adc'}).addTo(this.mapObjects);
     }
 
-    // Removes all markers from the map.
+    // Opens all marker popups.
+    public openPopups(): void {
+        this.mapObjects.eachLayer((obj: L.Layer): void => {
+            obj.openPopup();
+        })
+    }
+
+    // Removes all objects from the map.
     public wipe(): void {
         this.mapObjects.clearLayers();
-        this.points = [];
         this.markerNum = 0;
+        this.points = [];
     }
 
     // Recentres and resets the zoom of the map

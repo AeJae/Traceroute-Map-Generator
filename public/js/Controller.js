@@ -10,6 +10,7 @@ const title = document.getElementById("changeableTitle");
 const titleInputBox = document.getElementById("titleInputBox");
 const titleInputForm = document.getElementById("form");
 const refreshButton = document.getElementById("refresh");
+const openPopupButton = document.getElementById("openPopups");
 let titleInputShown = false;
 // FUNCTIONS
 // Hides the set title area.
@@ -55,11 +56,12 @@ async function refreshMap() {
 }
 // SETUP
 // EventListeners
-if (title && titleInputForm && recentrer && refreshButton) {
+if (title && titleInputForm && recentrer && refreshButton && openPopupButton) {
     title.addEventListener("click", titleClicked);
     titleInputForm.addEventListener("submit", hideTitleInput);
     recentrer.addEventListener("click", () => { map.recentre(3); });
     refreshButton.addEventListener("click", refreshMap);
+    openPopupButton.addEventListener("click", () => { map.openPopups(); });
 }
 else {
     throw new Error("Could not add event listeners.");
