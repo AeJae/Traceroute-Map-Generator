@@ -42,7 +42,7 @@ export default class Map {
             this.points.push(latLng);
         }
         else {
-            console.error(`No marker to add for hop ${this.markerNum}.`);
+            console.warn(`No marker to add for hop ${this.markerNum}.`);
             this.markerNum++;
         }
     }

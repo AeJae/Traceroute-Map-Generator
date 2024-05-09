@@ -47,7 +47,7 @@ export default class NetworkManager {
                 const rawData: Response = await fetch(`https://api.ipregistry.co/${ip}?key=${this.key}`);
                 if (!rawData.ok) {
                     const error = await rawData.json();
-                    console.error(`No location for ${ip}. Reason: ${error["code"]}.`);
+                    console.warn(`No location for ${ip}. Reason: ${error["code"]}.`);
                     return [];
                 }
                 const data = await rawData.json();
@@ -61,7 +61,7 @@ export default class NetworkManager {
                     console.log(`Fetched location of ${ip} with ipapi.`);
                     return [data.latitude, data.longitude];
                 } else {
-                    console.error(`No location for ${ip}. Reason: ${data.reason}.`);
+                    console.warn(`No location for ${ip}. Reason: ${data.reason}.`);
                     return [];
                 }
             }
