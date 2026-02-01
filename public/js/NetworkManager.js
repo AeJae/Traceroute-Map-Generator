@@ -42,7 +42,7 @@ export default class NetworkManager {
             // Whether to use Ipregistry or ipapi
             // Ipregistry
             if (this.useAccount) {
-                const rawData = await fetch(`https://api.ipregistry.co/${ip}?key=${this.key}`);
+                const rawData = await fetch(`https://eu.api.ipregistry.co/${ip}?key=${this.key}`);
                 if (!rawData.ok) {
                     const error = await rawData.json();
                     console.warn(`No location for ${ip}. Reason: ${error["code"]}.`);
